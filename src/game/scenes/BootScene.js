@@ -46,8 +46,29 @@ export class BootScene extends Phaser.Scene {
       loadingText.destroy();
     });
 
-    Object.entries(assetMap).forEach(([key, uri]) => {
-      this.load.image(key, uri);
+    Object.entries(assetMap)
+      .filter(([key]) => !key.startsWith("player"))
+      .forEach(([key, uri]) => {
+        this.load.image(key, uri);
+      });
+
+    [
+      ["playerIdle", "/assets/images/cute-girl/player-idle-1.png"],
+      ["playerIdle2", "/assets/images/cute-girl/player-idle-2.png"],
+      ["playerIdle3", "/assets/images/cute-girl/player-idle-3.png"],
+      ["playerIdle4", "/assets/images/cute-girl/player-idle-4.png"],
+      ["playerRun1", "/assets/images/cute-girl/player-run-1.png"],
+      ["playerRun2", "/assets/images/cute-girl/player-run-2.png"],
+      ["playerRun3", "/assets/images/cute-girl/player-run-3.png"],
+      ["playerRun4", "/assets/images/cute-girl/player-run-4.png"],
+      ["playerRun5", "/assets/images/cute-girl/player-run-5.png"],
+      ["playerRun6", "/assets/images/cute-girl/player-run-6.png"],
+      ["playerJumpRise", "/assets/images/cute-girl/player-jump-rise.png"],
+      ["playerJumpMid", "/assets/images/cute-girl/player-jump-mid.png"],
+      ["playerJumpFall", "/assets/images/cute-girl/player-jump-fall.png"],
+      ["playerHurt", "/assets/images/cute-girl/player-hurt.png"]
+    ].forEach(([key, path]) => {
+      this.load.image(key, path);
     });
   }
 

@@ -30,7 +30,7 @@ export class TitleScene extends Phaser.Scene {
       })
       .setOrigin(0.5);
 
-    this.add.image(width / 2, 250, "playerIdle").setScale(2.5);
+    this.add.image(width / 2, 250, "playerIdle").setScale(0.3);
 
     this.add
       .text(width / 2, 338, "Move: Arrow Keys / A D\nJump: Space / Up / W\nJump again in air for a double jump\nCollect seals, dodge spikes, reach the gate", {

@@ -11,6 +11,10 @@ Bunny Bound is a lightweight Phaser 3 platformer MVP built with Vite. It uses or
 - Optional touch controls and pause button
 - Static production build that can be served directly by NGINX
 
+## Temporary Art Test Asset
+
+The current character animation test uses selected PNG frames from the CC0 asset pack ["Cute Girl - Free Sprites" by pzUH on OpenGameArt](https://opengameart.org/content/cute-girl-free-sprites). This is a temporary integration to validate the sprite workflow before replacing it with a more on-style bunny heroine.
+
 ## Project Structure
 
 ```text

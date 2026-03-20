@@ -1,6 +1,16 @@
 import Phaser from "phaser";
 import { PLAYER } from "../constants";
 
+const IDLE_FRAMES = ["playerIdle", "playerIdle2", "playerIdle3", "playerIdle4"];
+const RUN_FRAMES = [
+  "playerRun1",
+  "playerRun2",
+  "playerRun3",
+  "playerRun4",
+  "playerRun5",
+  "playerRun6"
+];
+
 export class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, "playerIdle");
@@ -8,8 +18,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     scene.physics.add.existing(this);
 
     this.scene = scene;
-    this.body.setSize(22, 40);
-    this.body.setOffset(13, 16);
+    this.setScale(0.13);
+    this.body.setSize(150, 270);
+    this.body.setOffset(132, 120);
     this.setCollideWorldBounds(false);
 
     this.jumpBufferTimer = -Infinity;
@@ -59,12 +70,19 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     if (!this.body.blocked.down) {
-      this.setTexture("playerJump");
+      if (this.body.velocity.y < -120) {
+        this.setTexture("playerJumpRise");
+      } else if (this.body.velocity.y < 140) {
+        this.setTexture("playerJumpMid");
+      } else {
+        this.setTexture("playerJumpFall");
+      }
     } else if (Math.abs(this.body.velocity.x) > 35) {
-      const frame = Math.floor(time / 120) % 2 === 0 ? "playerRunA" : "playerRunB";
+      const frame = RUN_FRAMES[Math.floor(time / 90) % RUN_FRAMES.length];
       this.setTexture(frame);
     } else {
-      this.setTexture("playerIdle");
+      const frame = IDLE_FRAMES[Math.floor(time / 220) % IDLE_FRAMES.length];
+      this.setTexture(frame);
     }
   }
 }
